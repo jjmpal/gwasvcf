@@ -108,7 +108,7 @@ sqlite_ld_proxies <- function(rsids, dbfile, tag_r2)
 
 	temp <- do.call(rbind, strsplit(ld[["PHASE"]], "")) %>% dplyr::as_tibble(.data, .name_repair="minimal")
 	names(temp) <- c("A1", "B1", "A2", "B2")
-	ld <- cbind(ld, temp) %>% dplyr::as_tibble(.data, .name_repair="minimal")
+	ld <- cbind(ld, temp) %>% dplyr::as_tibble(.name_repair="minimal")
 	ld <- dplyr::arrange(ld, dplyr::desc(abs(.data[["R"]])))
 	message("Found ", nrow(ld), " proxies")
 	RSQLite::dbDisconnect(conn)
